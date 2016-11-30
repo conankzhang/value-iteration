@@ -16,6 +16,7 @@ function policy = CS4300_run_value_iteration()
 
 S = [[1,2], [2,1]];
 A = [1,2,3,4];
+P = CS4300_Probs();
 R = -0.04;
 gamma = 0.999999;
 eta = 0.1;

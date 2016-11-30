@@ -41,6 +41,7 @@ eta,max_iter)
 %
 
 U = 0;
+U_trace = 0;
 U_prime = 0;
 
 done = 0;
