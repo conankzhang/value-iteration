@@ -72,9 +72,8 @@ while(done == 0 && iter < max_iter)
                     best_action = a; 
                  end
               end
-              
-              pi_star(s2) = best_action;
           end
+          pi_star(a) = best_action;
        end
  
        U_prime(s1) = R(s1) + (gamma * max(pi_star));
