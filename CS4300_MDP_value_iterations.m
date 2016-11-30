@@ -35,7 +35,30 @@ eta,max_iter)
 %                           V
 %                           3
 % Author:
-%     Your name
+%     Rajul Ramchandani & Conan Zhang
 %     UU
 %     Fall 2016
 %
+
+U = 0;
+U_prime = 0;
+
+done = 0;
+while(done == 0)
+    U = U_prime;
+    delta = 0;
+    
+    length = length(S);
+    for s = 1:length
+       % U_prime(s) = R(s) + gamma * max(sum(P(
+        if(abs(U_prime(s) - U(s)) > delta)
+            delta = abs(U_prime(s) - U(s));
+        end
+        
+    end
+    
+    if(delta < (eta * (1 - gamma)/gamma))
+        done = 1;
+    end
+end
+    
