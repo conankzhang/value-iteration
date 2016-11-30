@@ -40,49 +40,56 @@ eta,max_iter)
 %     Fall 2016
 %
 
-U = 0;
-U_trace = 0;
-U_prime = 0;
+count = length(S);
+
+
+if(count == 16)
+    U = zeros(1,16);
+    U_prime =zeros(1,16);
+else
+    U = zeros(1,12);
+    U_prime = zeros(1,12);
+end
+
+U_trace(1,:) = U;
+  
 
 done = 0;
 iter = 0;
 
 while(done == 0 && iter < max_iter)
     iter = iter + 1;
-    U_trace(end+1) = U_prime;
     U = U_prime;
     delta = 0;
     
-    s_length = length(S);
-    
+    s_length = length(S);  
     for s1 = 1:s_length
        best_action = 0;
        best_val = -Inf;
 
        a_length = length(A);
        for a = 1:a_length
-          for s2 = 1:s_length
-              a_sum = 0;
-
-              s_prime_length = P(s2,a).probs;
-              for s_prime = 1:s_prime_length
-                 a_sum = a_sum + P(s2,a).probs(s_prime) * U(s_prime);
-
-                 if(a_sum > best_val)
-                    best_action = a; 
-                 end
-              end
+          a_sum = 0;
+          for s2 = 1:s_length     
+           
+             a_sum = a_sum + P(s1,a).probs(s2)* U(s2);
+    
+             if(a_sum > best_val)
+                best_val = a_sum;
+                best_action = a; 
+             end
           end
-          pi_star(a) = best_action;
        end
  
-       U_prime(s1) = R(s1) + (gamma * max(pi_star));
-       
+       U_prime(s1) = R(s1) + (gamma * best_val);
+
        if(abs(U_prime(s1) - U(s1)) > delta)
            delta = abs(U_prime(s1) - U(s1));
        end
     end
     
+    U_trace(end+1,:) = U_prime;
+
     if(delta < (eta * (1 - gamma)/gamma))
         done = 1;
     end
