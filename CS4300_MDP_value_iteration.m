@@ -44,7 +44,10 @@ U = 0;
 U_prime = 0;
 
 done = 0;
-while(done == 0)
+iter = 0;
+
+while(done == 0 && iter < max_iter)
+    iter = iter + 1;
     U = U_prime;
     delta = 0;
     
@@ -60,9 +63,9 @@ while(done == 0)
            for a = 1:a_length
               a_sum = 0;
 
-              % s_prime loop not correct
-              for s_prime = 1:P(s2,a)
-                 a_sum = a_sum + P(s2,a).probs * U(s_prime);
+              s_prime_length = P(s2,a).probs;
+              for s_prime = 1:s_prime_length
+                 a_sum = a_sum + P(s2,a).probs(s_prime) * U(s_prime);
                  
                  if(a_sum > best_val)
                     best_action = a; 

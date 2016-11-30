@@ -14,8 +14,9 @@ function policy = CS4300_run_value_iteration()
 %     Fall 2016
 %
 
+S = [[1,2], [2,1]];
 A = [1,2,3,4];
-
+R = -0.04;
 gamma = 0.999999;
 eta = 0.1;
 max_iter = 100;
