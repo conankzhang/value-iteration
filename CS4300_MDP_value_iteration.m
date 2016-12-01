@@ -39,9 +39,7 @@ eta,max_iter)
 %     UU
 %     Fall 2016
 
-
 count = length(S);
-
 
 if(count == 16)
     U = zeros(1,16);
@@ -63,14 +61,8 @@ else
     U_prime(8) =-1;
 end
 
-
-
-
-
 U_trace(1,:) = U;
   
-
-done = 0;
 iter = 2;
 
 while( iter <= max_iter)
@@ -119,6 +111,3 @@ while( iter <= max_iter)
         return;
     end
 end
-    
-
-

@@ -20,13 +20,9 @@ function policy = CS4300_MDP_policy(S,A,P,U)
 
 count = length(S);
 
-
 best_action = 1;
 default_policy_action =1;
 
-  
-
-done = 0;
 iter = 2;
 
 while( iter <= max_iter)
@@ -66,11 +62,5 @@ while( iter <= max_iter)
                 policy(end+1) = default_policy_action;
            end
        end
-     
-
     end
-    
 end
-    
-
-
