@@ -22,11 +22,32 @@ function policy = CS4300_run_value_iteration()
 S = [1,2,3,4,5,6,7,8,9,10,11,12];
 A = [1,2,3,4];
 P = CS4300_Probs34();
-R = ones(3,4)*-0.04;
-
+R = ones(1,12)*-0.04;
+R(12) = 1;
+R(8) = -1;
 gamma = 0.999999;
 eta = 0.1;
 max_iter = 100;
 
 [U,Ut] = CS4300_MDP_value_iteration(S,A,P,R, gamma, eta, max_iter);
-Ut
+time = [];
+for t= 0:31
+    time(end+1) = t;
+end
+
+plot(time, Ut(:,12), 'DisplayName', 'Actual vel in x');
+text(length(Ut(:,12)),Ut(end,12),'(4,3)');
+hold on;
+
+plot(time, Ut(:,11), 'DisplayName', 'Actual vel in x');
+text(length(Ut(:,11)),Ut(end,11),'(3,3)');
+hold on;
+
+plot(time, Ut(:,3), 'DisplayName', 'Actual vel in x');
+text(length(Ut(:,3)),Ut(end,3),'(3,1)');
+hold on;
+plot(time, Ut(:,1), 'DisplayName', 'Actual vel in x');
+text(length(Ut(:,1)),Ut(end,1),'(3,3)');
+hold on;
+plot(time, Ut(:,4), 'DisplayName', 'Actual vel in x');
+text(length(Ut(:,4)),Ut(end,4),'(4,1)');
