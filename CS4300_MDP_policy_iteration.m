@@ -51,7 +51,7 @@ count = length(S);
 if(count == 16)
     U = zeros(1,16);
     U_prime =zeros(1,16);
-    policy = randi([0 5],1,16);
+    policy = randi([1 4],1,16);
     U(16) = 1000;
     U(12) = -1000;
     U(11) = -1000;
@@ -63,20 +63,20 @@ if(count == 16)
 else
     U = zeros(1,12);
     U_prime = zeros(1,12);
-    policy = randi([0 5],1,12);
+    policy = randi([1 4],1,12);
     U(12) =1;
     U(8) =-1;
     U_prime(12) =1;
     U_prime(8) =-1;
 end
 
-U_trace(1,:) = U;
+Ut(1,:) = U;
   
 unchanged = 1;
 
 while(unchanged == 1)
-    U = U_prime;
-    unchanged = 1;
+    U = CS4300_MDP_policy_evaluation(S,A,P,R,gamma,k,policy,U);
+    Ut(end+1,:) = U;
     
     s_length = length(S);  
     for s1 = 1:s_length
@@ -118,9 +118,9 @@ while(unchanged == 1)
        end
     end
     
-    U_trace(end+1,:) = policy;
-
     if(unchanged == 1)
         return;
     end
+    
+    unchanged = 1;
 end
