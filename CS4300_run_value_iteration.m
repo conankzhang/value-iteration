@@ -37,6 +37,9 @@ end
 
 plot(time, Ut(:,12), 'DisplayName', 'Actual vel in x');
 text(length(Ut(:,12)),Ut(end,12),'(4,3)');
+title('Figure 1')
+xlabel('Number of Iterations')
+ylabel('Utility Estimates')
 hold on;
 
 plot(time, Ut(:,11), 'DisplayName', 'Actual vel in x');
@@ -46,8 +49,10 @@ hold on;
 plot(time, Ut(:,3), 'DisplayName', 'Actual vel in x');
 text(length(Ut(:,3)),Ut(end,3),'(3,1)');
 hold on;
+
 plot(time, Ut(:,1), 'DisplayName', 'Actual vel in x');
-text(length(Ut(:,1)),Ut(end,1),'(3,3)');
+text(length(Ut(:,1)),Ut(end,1),'(1,1)');
 hold on;
+
 plot(time, Ut(:,4), 'DisplayName', 'Actual vel in x');
 text(length(Ut(:,4)),Ut(end,4),'(4,1)');
