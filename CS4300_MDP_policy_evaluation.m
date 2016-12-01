@@ -22,32 +22,10 @@ function [U] = CS4300_MDP_policy_evaluation(S,A,P,R,gamma,max_iter, policy, U)
 %     Fall 2016
 
 count = length(S);
-
-if(count == 16)
-    U = zeros(1,16);
-    U_prime =zeros(1,16);
-    U(16) = 1000;
-    U(12) = -1000;
-    U(11) = -1000;
-    U(7) = 1000; 
-    U_prime(16) = 1000;
-    U_prime(12) = -1000;
-    U_prime(11) = -1000;
-    U_prime(7) = 1000;
-else
-    U = zeros(1,12);
-    U_prime = zeros(1,12);
-    U(12) =1;
-    U(8) =-1;
-    U_prime(12) =1;
-    U_prime(8) =-1;
-end
-  
 iter = 2;
 
 while(iter <= max_iter)
     iter = iter + 1;
-    U = U_prime;
     
     s_length = length(S);  
     for s1 = 1:s_length
@@ -58,11 +36,12 @@ while(iter <= max_iter)
                  
        if count ==16
             if s1 ~= 16 && s1 ~= 12 && s1 ~= 11 && s1 ~= 7
-                U_prime(s1) = R(s1) + (gamma * current_sum);
+                U(s1) = R(s1) + (gamma * current_sum);
             end
-       elseif count ==12
+       end     
+       if count ==12
            if s1 ~= 12 && s1 ~= 8 && s1~=6
-                U_prime(s1) = R(s1) + (gamma * current_sum);
+                U(s1) = R(s1) + (gamma * current_sum);
            end
        end
     end
