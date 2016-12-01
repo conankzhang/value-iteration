@@ -47,11 +47,11 @@ if(count == 16)
     U(16) = 1000;
     U(12) = -1000;
     U(11) = -1000;
-    U(7) = 1000; 
+    U(7) = -1000; 
     U_prime(16) = 1000;
     U_prime(12) = -1000;
     U_prime(11) = -1000;
-    U_prime(7) = 1000;
+    U_prime(7) = -1000;
 else
     U = zeros(1,12);
     U_prime = zeros(1,12);
@@ -82,18 +82,19 @@ while( iter <= max_iter)
              a_sum = a_sum + P(s1,a).probs(s2)* U(s2);
           end
           
-          if(a_sum > best_val)
-                best_val = a_sum;
-                best_action = a; 
-          end
-          
+%           if(a_sum > best_val)
+%                 best_val = a_sum;
+%                 best_action = a; 
+%           end
+          best_val = max(a_sum, best_val);
        end
        
        if count ==16
             if s1 ~= 16 && s1 ~= 12 && s1 ~= 11 && s1 ~= 7
                 U_prime(s1) = R(s1) + (gamma * best_val);
             end
-       elseif count ==12
+       end
+       if count ==12
            if s1 ~= 12 && s1 ~= 8 && s1~=6
                 U_prime(s1) = R(s1) + (gamma * best_val);
            end
