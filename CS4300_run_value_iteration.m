@@ -40,28 +40,24 @@ max_iter = 1000;
 
 [U,Ut] = CS4300_MDP_value_iteration(S,A,P,R, gamma, eta, max_iter);
 time = [];
-for t= 0:31
+for t= 0:516
     time(end+1) = t;
 end
 
-plot(time, Ut(:,12), 'DisplayName', 'Actual vel in x');
-text(length(Ut(:,12)),Ut(end,12),'(4,3)');
-title('Figure 1')
+plot(time, Ut(:,1), 'DisplayName', 'Actual vel in x');
+text(length(Ut(:,1)),Ut(end,1),'(1,1)');
+title('Utility Estimations with Gamma of 0.999999')
 xlabel('Number of Iterations')
 ylabel('Utility Estimates')
 hold on;
 
-plot(time, Ut(:,11), 'DisplayName', 'Actual vel in x');
-text(length(Ut(:,11)),Ut(end,11),'(3,3)');
-hold on;
-
 plot(time, Ut(:,3), 'DisplayName', 'Actual vel in x');
-text(length(Ut(:,3)),Ut(end,3),'(3,1)');
-hold on;
-
-plot(time, Ut(:,1), 'DisplayName', 'Actual vel in x');
-text(length(Ut(:,1)),Ut(end,1),'(1,1)');
+text(length(Ut(:,3)),Ut(end,3),'(1,3)');
 hold on;
 
 plot(time, Ut(:,4), 'DisplayName', 'Actual vel in x');
-text(length(Ut(:,4)),Ut(end,4),'(4,1)');
+text(length(Ut(:,4)),Ut(end,4),'(1,4)');
+hold on;
+
+plot(time, Ut(:,15), 'DisplayName', 'Actual vel in x');
+text(length(Ut(:,15)),Ut(end,15),'(3,4)');
