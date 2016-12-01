@@ -82,10 +82,6 @@ while( iter <= max_iter)
              a_sum = a_sum + P(s1,a).probs(s2)* U(s2);
           end
           
-%           if(a_sum > best_val)
-%                 best_val = a_sum;
-%                 best_action = a; 
-%           end
           best_val = max(a_sum, best_val);
        end
        
