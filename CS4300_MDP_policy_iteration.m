@@ -75,7 +75,8 @@ U_trace(1,:) = U;
 unchanged = 1;
 
 while(unchanged == 1)
-    U = U_prime;
+    U = CS4300_MDP_policy_evaluation(S,A,P,R,gamma,k,policy,U);
+
     unchanged = 1;
     
     s_length = length(S);  
